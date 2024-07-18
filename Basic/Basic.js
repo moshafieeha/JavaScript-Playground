@@ -1,3 +1,43 @@
+// A function to detect even and odd number
+function evenOrOdd(number) {
+  if (number % 2 == 0) {
+    return "even";
+  } else {
+    return "odd";
+  }
+}
+
+console.log(evenOrOdd(3));
+//////////////////////////////////////////////////////////////////////////////
+
+// A function to detect prime number
+function isPrime(number) {
+  if (number <= 1) return false;
+
+  for (let index = 2; index < number; index++) {
+    if (number % index == 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(isPrime(41));
+//////////////////////////////////////////////////////////////////////////////
+
+// A function to print prime numbers
+function primePrinter(number) {
+  for (let index = 0; index < number; index++) {
+    if (isPrime(index)) {
+      console.log(index);
+    }
+  }
+}
+
+primePrinter(15);
+//////////////////////////////////////////////////////////////////////////////
+
 // A function to print numbers in the form 1 + 3k without using conditional statements (if else). Assume k can range from 1 to 100.
 function threeKPlusOne() {
   for (let index = 1; index < 101; index++) {
@@ -87,3 +127,36 @@ function digitSum(inputNumber) {
 
 console.log(digitSum(597));
 //////////////////////////////////////////////////////////////////////////////
+
+// A function to reverse numbers
+function reverseNumber(number) {
+  let reversed = 0;
+
+  while (number > 0) {
+    reversed = reversed * 10 + (number % 10);
+    number = Math.floor(number / 10);
+  }
+
+  return reversed;
+}
+
+console.log(reverseNumber(4567));
+//////////////////////////////////////////////////////////////////////////////
+
+// A function to print a specific number of Fibonacci series
+function fiboPrinter(number) {
+  let n1 = 0;
+  let n2 = 1;
+  let temp;
+
+  for (let index = 0; index < number; index++) {
+    console.log(n1);
+    temp = n1 + n2;
+    n1 = n2;
+    n2 = temp;
+  }
+}
+
+fiboPrinter(10);
+//////////////////////////////////////////////////////////////////////////////
+
