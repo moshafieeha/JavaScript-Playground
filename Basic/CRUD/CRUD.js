@@ -57,7 +57,7 @@ const create = (newUser) => {
     lastName: "string",
     city: "string",
     position: "string",
-    uid: "string",
+    uid: "number",
   };
 
   const inputKeys = Object.keys(newUser);
@@ -90,6 +90,95 @@ const create = (newUser) => {
 
   return `User (${newUser.uid}) created successfully.`;
 };
+
+/* // Valid Test Case
+const incorrectTypeUser = {
+    firstName: "Bob",
+    lastName: "Brown",
+    city: "Miami",
+    position: "Analyst",
+    uid: 12345 // uid should be a string
+  };
+  
+const result = create(incorrectTypeUser);
+console.log(result); // Expected Output: "Invalid input (expected uid to be of type string)"
+ */
+
+/* // Invalid Test Cases
+// Invalid Input Type (Not an Object)
+const invalidInputType = "This is a string";
+const result = create(invalidInputType);
+console.log(result); // Expected Output: "Invalid input type"
+
+// Invalid Input Type (Array)
+const invalidInputArray = ["John", "Doe"];
+const result = create(invalidInputArray);
+console.log(result); // Expected Output: "Invalid input type"
+
+// Invalid Input Type (Null)
+const invalidInputNull = null;
+const result = create(invalidInputNull);
+console.log(result); // Expected Output: "Invalid input type"
+
+// Missing Key
+const missingKeyUser = {
+  firstName: "Jane",
+  lastName: "Smith",
+  city: "Los Angeles",
+  position: "Designer"
+  // Missing 'uid'
+};
+
+const result = create(missingKeyUser);
+console.log(result); // Expected Output: "Invalid input (missing key: uid)"
+
+// Falsy Value
+const falsyValueUser = {
+  firstName: "Alice",
+  lastName: "",
+  city: "Chicago",
+  position: "Manager",
+  uid: "67890"
+};
+
+const result = create(falsyValueUser);
+console.log(result); // Expected Output: "Invalid input (falsy value for key: lastName)"
+
+// Incorrect Type
+const incorrectTypeUser = {
+  firstName: "Bob",
+  lastName: "Brown",
+  city: "Miami",
+  position: "Analyst",
+  uid: 12345 // uid should be a string
+};
+
+const result = create(incorrectTypeUser);
+console.log(result); // Expected Output: "Invalid input (expected uid to be of type string)"
+
+// Duplicated User
+// Assuming userData already has a user with uid "12345"
+userData = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+    city: "New York",
+    position: "Developer",
+    uid: "12345"
+  }
+];
+
+const duplicateUser = {
+  firstName: "Jane",
+  lastName: "Doe",
+  city: "San Francisco",
+  position: "Engineer",
+  uid: "12345" // Duplicate uid
+};
+
+const result = create(duplicateUser);
+console.log(result); // Expected Output: "Duplicated user!"
+ */
 
 /////////////////////// UPDATE //////////////////////
 const update = (uid, modifiedUser) => {
@@ -135,7 +224,6 @@ const update = (uid, modifiedUser) => {
     }
   }
 
-
   // Find the target user
   const targetUser = userData.find((user) => user.uid === uid);
   if (!targetUser) {
@@ -160,6 +248,7 @@ const update = (uid, modifiedUser) => {
   return `Updated (uid: ${uid}) successfully.`;
 };
 
+
 /////////////////////// DELETE //////////////////////
 const remove = (uid) => {
   // Validation
@@ -182,3 +271,33 @@ const remove = (uid) => {
 
   return `User (uid: ${uid}) deleted successfully.`;
 };
+
+
+/* // Valid Test Cases
+// Remove User with Valid uid (Assuming userData has a user with uid 12345)
+
+const result = remove(12345);
+console.log(result); // Expected Output: "User (uid: 12345) deleted successfully."
+console.log(userData); // Expected Output: [{ firstName: 'Jane', lastName: 'Smith', city: 'Los Angeles', position: 'Designer', uid: 67890 }]
+*/
+
+/* // Invalid Test Cases
+// Invalid Input Type (String)
+const invalidInputType = "12345";
+const result = remove(invalidInputType);
+console.log(result); // Expected Output: "Invalid input type (uid)"
+
+// User Not Found
+// Assuming userData does not have a user with uid 12345
+userData = [
+  {
+    firstName: "Jane",
+    lastName: "Smith",
+    city: "Los Angeles",
+    position: "Designer",
+    uid: 67890
+  }
+];
+
+const result = remove(12345);
+console.log(result); // Expected Output: "User (uid: 12345) not found!" */
